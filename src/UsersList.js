@@ -13,7 +13,6 @@ class UsersList extends Component {
 		this.clearLog = this.clearLog.bind(this);
 	}
 	
-	
 	loadUsersFromServer() {
 		$.ajax({
 			url: 'https://jsonplaceholder.typicode.com/users',
@@ -24,7 +23,6 @@ class UsersList extends Component {
 			}.bind(this)
 		});
 	}
-	
 	
 	clearLog() {
 		localStorage.removeItem("loginedUserStore");

@@ -28,10 +28,6 @@ class RegistrationForm extends Component {
 		this.setState({confirmPassword: e.target.value});
 	}
 	
-	static contextTypes = {
-    	router: PropTypes.object
-	}
-
 	handleSubmit(e) {
 		e.preventDefault();
 		let email = this.state.email.trim();
@@ -39,7 +35,6 @@ class RegistrationForm extends Component {
 		let confirmPassword = this.state.confirmPassword.trim();
 		if (password !== confirmPassword) {
 			alert("Passwords don't match")
-			
 		} else if (!email || !password || !confirmPassword) {
 			alert("Please, fill all the fields");
 		} else {
@@ -52,19 +47,18 @@ class RegistrationForm extends Component {
 			let serialRegisteredUser = JSON.stringify(registeredUser);
 			localStorage.setItem("registeredUserStore", serialRegisteredUser); 
 			console.log("New user" + serialRegisteredUser);
-			
 			this.setState({email: '', password: '', confirmPassword: ''}); 			
 			this.props.history.push('/')
 		}
 	}
 
-
 	render() {
 		return (
 			<div className="container">
 				<div className="row welcome">
-					<div className="col-md-1">
+					<div className="col-md-2">
 						<Link to="/" className="menu">Log In</Link> 
+						<Link to="/users" className="menu">Users</Link> 
 					</div>
 				</div>
 				<div className="row">

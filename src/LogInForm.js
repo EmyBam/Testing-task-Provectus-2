@@ -10,14 +10,11 @@ class LogInForm extends Component {
 		super(props);
 		this.state = {email: '',
 					  password: '',
-					  loginedUser: '', 
 					 };
-		
 		
 		this.handleEmailChange = this.handleEmailChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.isUserExist = this.isUserExist.bind(this);
 		this.isAuthenticated = this.isAuthenticated.bind(this);
   	}
 	
@@ -28,21 +25,8 @@ class LogInForm extends Component {
 	handlePasswordChange(e) {
 		this.setState({password: e.target.value});
 	}
-		
-	handleConfirmPasswordChange(e) {
-		this.setState({confirmPassword: e.target.value});
-	}
 	
 	handleSubmit(e) {
-		e.preventDefault();
-		if(this.isUserExist(e)) {
-			console.log("Users authenticated");
-			this.setState({email: '', password: ''}); 
-			this.props.history.push('/users')
-		}
-	}
-	
-	isUserExist(e) {
 		e.preventDefault();
 		let email = this.state.email.trim();
 		let password = this.state.password.trim();
@@ -66,7 +50,10 @@ class LogInForm extends Component {
 			if (registeredUser.email == loginedUser.email && 
 				registeredUser.password == loginedUser.password) {
 					localStorage.setItem("loginedUserStore", serialLoginedUser);
-					return true;
+					console.log("Users authenticated");
+					this.setState({email: '', password: ''}); 
+					this.props.history.push('/users')
+					
 				} else {
 					alert("Login or Password doesn't exist");
 				}
@@ -88,6 +75,7 @@ class LogInForm extends Component {
 					<div className="row welcome">
 						<div  className="col-md-1">
 							<Link to="/registration" className="menu">Registration</Link> 
+							<Link to="/users" className="menu">Users</Link> 
 						</div>
 					</div>		
 					<div className="row">

@@ -6,21 +6,18 @@ import UsersList from './UsersList';
 import LogInForm from './LogInForm';
 import RegistrationForm from './RegistrationForm';
 
-
 export const history = createHashHistory()
-
 
 class App extends Component {
 	
 	constructor(props) {
 		super(props);
-		
 		this.isAuthenticated = this.isAuthenticated.bind(this);
 	}
 		
 	isAuthenticated() {
-		return (JSON.parse(localStorage.getItem("loginedUserStore"))) ? true : false;
-	}
+			return (JSON.parse(localStorage.getItem("loginedUserStore"))) ? true : false;
+		}		
 	
 	render() {
 		
@@ -37,6 +34,11 @@ class App extends Component {
 			)}/>
 		)
 		
+		const NoMatch = ({ location }) => (
+		  <div>
+			<h3>No match for <code>{location.pathname}</code></h3>
+		  </div>
+		)
 		
     	return (
 			<BrowserRouter>
@@ -44,6 +46,7 @@ class App extends Component {
 					<Route exact path="/" component={LogInForm}/>
 					<Route path="/registration" component={RegistrationForm}/>
 					<PrivateRoute path="/users" component={UsersList} />
+					<Route component={NoMatch}/>
 				</Switch>
 			</BrowserRouter>
 		);

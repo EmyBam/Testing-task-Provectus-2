@@ -11,7 +11,6 @@ class User extends Component {
 					<p className="col-md-3">{this.props.phone}</p>
 				</div>
 			</div>
-
 		);
 	}
 }
