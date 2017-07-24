@@ -1,5 +1,11 @@
 .welcome {
 	margin: 10px 0;
-	text-align: center;
 }
 
+.menu {
+	margin-right: 15px; 
+}
+
+input, button {
+	margin-bottom: 20px;
+}
